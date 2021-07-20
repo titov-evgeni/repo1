@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title></title>
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+              crossorigin="anonymous">
+        <!-- Core theme CSS (includes Bootstrap)-->
+<!--        <link href="css/styles.css" rel="stylesheet" />-->
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+
+            </div>
+        </nav>
+
+        <!-- Header-->
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder"></h1>
+                </div>
+            </div>
+        </header>
+
+        <!-- Section-->
+        <section class="py-5">
+            {% block content %}
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                <div class="col-md-8">
+                    <div class="container">
+                        <form action="/" method="post" id="form">
+                            {% csrf_token %}
+                            <div class="form-group" id="form-group">
+                                {{ form }}
+                            </div>
+                            <button type="submit" class="btn btn-outline-dark mt-2"
+                                id="button-submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="container">
+                        <button class="btn btn-outline-dark mt-4"
+                            onclick="add()">Добавить input</button>
+                    </div>
+                </div>
+            </div>
+            {% endblock content %}
+        </section>
+
+        <script>
+        var counter = 1;
+        function add(){
+            var form = document.getElementById("form-group");
+            var new_label = document.createElement('label');
+            var new_input = document.createElement('input');
+
+            new_label.setAttribute("for","name" + counter);
+            new_label.innerHTML = "name" + counter + ":";
+
+            new_input.setAttribute("type", "text");
+            new_input.name = 'name' + counter;
+            counter += 1;
+
+            form.appendChild(new_label);
+            form.appendChild(new_input);
+        }
+        </script>
+
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white"></p></div>
+        </footer>
+        <!-- Bootstrap core JavaScript -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <!-- Core theme JS-->
+    </body>
+</html>
